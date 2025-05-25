@@ -1,0 +1,21 @@
+insights/general_report.csv
+ringba_reports/ringba_report.csv
+response.json
+ringba_insights/ringba_insights_report.csv
+#token.json
+node_modules
+# Entorno
+.env
+__pycache__/
+venv/
+*.pyc
+
+# Token.json y credenciales OAuth
+token.json
+tokenss.json
+credentials.json
+config.py
+
+# Archivos de IDE
+.vscode/
+.idea/

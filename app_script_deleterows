@@ -1,0 +1,37 @@
+function deleteRowsByDate(dateStart, sheetName) {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getSheetByName(sheetName);
+
+  if (!sheet) {
+    throw new Error("No se encontró la hoja con nombre '" + sheetName + "'.");
+  }
+
+  var range = sheet.getDataRange();
+  var values = range.getValues();
+
+  // Obtenemos el índice de la columna 'date_start' asumiendo que la primera fila contiene los encabezados
+  var dateStartColumnIndex = values[0].indexOf('date_start') + 1;
+
+  if (dateStartColumnIndex < 1) {
+    throw new Error("La columna 'date_start' no se encuentra en la hoja especificada.");
+  }
+
+  // Identificamos las filas a eliminar
+  var rowsToDelete = [];
+  for (var i = 1; i < values.length; i++) { // Empezamos en 1 para saltar los encabezados
+    var rowDate = values[i][dateStartColumnIndex - 1];
+    if (rowDate === dateStart) {
+      rowsToDelete.push(i + 1); // Guardamos el índice de la fila (sumamos 1 porque las filas en Apps Script empiezan en 1)
+    }
+  }
+
+  // Eliminamos las filas en bloque, comenzando desde la última para evitar desplazamientos
+  for (var j = rowsToDelete.length - 1; j >= 0; j--) {
+    sheet.deleteRow(rowsToDelete[j]);
+  }
+
+  // Retornamos un mensaje indicando que la ejecución fue exitosa
+  return "El borrado de filas por fecha se ejecutó correctamente.";
+}
+
+//deleteRowsByDate('2024-04-10', 'test meta')
