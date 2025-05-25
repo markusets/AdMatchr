@@ -69,7 +69,7 @@ pip install -r requirements.txt
 ### 5. Run the bot
 
 ```bash
-python homer.py
+python matchr.py
 ```
 
 In Discord, type:
@@ -91,7 +91,7 @@ The bot will:
 
 ```
 ├── .env.example       # template for your secrets
-├── homer.py           # bot entrypoint
+├── matchr.py           # bot entrypoint
 ├── requirements.txt   # Python dependencies
 ├── cogs/              # Discord command modules
 │   ├── daily_general_report.py
